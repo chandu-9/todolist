@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon index.js",
-    "release":"release-it"
+    "release": "release-it"
   },
   "type": "module",
   "keywords": [],
@@ -21,7 +21,6 @@
     "sequelize": "^6.37.1"
   },
   "devDependencies": {
-    "nodemon": "^3.1.0",
-    "release-it": "^17.6.0"
+    "nodemon": "^3.1.0"
   }
 }
