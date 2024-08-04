@@ -14,18 +14,38 @@
 
 //const inquirer = require('inquirer');
 import inquirer from 'inquirer';
+import { readFile } from 'fs/promises';
+import { fileURLToPath } from 'url';
+import { dirname, resolve } from 'path';
 
-import Task from './task.js';
 
+   // Load the list of repositories
+// Get the current directory
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
-var tasks = ["Gym", "Programming", "Netflix"];
+   const reposFile = resolve(__dirname, 'repos.json');
+   const reposData = await readFile(reposFile, 'utf8');
+   const repos = JSON.parse(reposData);
 
-const task = new Task(tasks);
-
+const questions = [
+    {
+      type: 'checkbox',
+      name: 'fruits',
+      message: 'Select the fruits you like:',
+      choices: repos
+    }
+  ];
+  
+  inquirer.prompt(questions).then(answers => {
+    console.log('You selected:', answers.fruits);
+  }).catch(error => {
+    console.error('Error:', error);
+  });
 
 var menu = inquirer.prompt([
     {
-        type: 'list',
+        type: 'checkbox',
         name: 'menuChoice',
         message: 'Select an option',
         choices: [
